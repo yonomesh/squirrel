@@ -30,5 +30,5 @@ type Msger interface {
 }
 
 type Extra interface {
-	EctraToString() (string, error)
+	ExtraToString() (string, error)
 }
