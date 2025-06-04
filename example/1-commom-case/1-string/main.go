@@ -1,9 +1,9 @@
-package main
+package example
 
 import (
+	"example/log"
 	"fmt"
 	"os"
-	"testsq/log"
 
 	sq "github.com/yonomesh/squirrel"
 )
