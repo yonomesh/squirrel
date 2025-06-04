@@ -9,13 +9,13 @@ type LogLevel = uint8
 
 // Log Level
 const (
-	Trace   LogLevel = 1 << iota // 1   0000001
-	Debug                        // 2   0000010
-	Info                         // 4   0000100
-	Warning                      // 8   0001000
-	Error                        // 16  0010000
-	Fatal                        // 32  0100000
-	Panic                        // 64  1000000
+	Trace LogLevel = 1 << iota // 1   0000001
+	Debug                      // 2   0000010
+	Info                       // 4   0000100
+	Warn                       // 8   0001000
+	Error                      // 16  0010000
+	Fatal                      // 32  0100000
+	Panic                      // 64  1000000
 
 )
 
@@ -27,7 +27,7 @@ func LevelToString(level LogLevel) string {
 		return "debug"
 	case Info:
 		return "info"
-	case Warning:
+	case Warn:
 		return "warning"
 	case Error:
 		return "error"
@@ -49,7 +49,7 @@ func LevelToNumber(level string) (LogLevel, error) {
 	case "info":
 		return Info, nil
 	case "warning":
-		return Warning, nil
+		return Warn, nil
 	case "error":
 		return Error, nil
 	case "fatal":
