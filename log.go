@@ -1,7 +1,7 @@
 package squirrel
 
 // Log represents the log data format.
-type Log struct {
+type LogEntry struct {
 	Time     string   `json:"ts"`       // Timestamp of the log entry
 	Level    string   `json:"level"`    // Log level (e.g., Trace, Debug, Info, Warning, Error, Fataland Panic)
 	Category string   `json:"category"` // Category or type of the log (e.g., user-action)
@@ -16,4 +16,7 @@ type Msger interface {
 
 type Extra interface {
 	ExtraToString() (string, error)
+}
+
+type Logger struct {
 }
