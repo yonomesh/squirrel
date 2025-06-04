@@ -4,17 +4,6 @@ import (
 	"time"
 )
 
-// Log Level
-const (
-	Trace   = "trace"
-	Debug   = "debug"
-	Info    = "info"
-	Warning = "warning"
-	Error   = "error"
-	Fatal   = "fatal"
-	Panic   = "painc"
-)
-
 // Log represents the log data format.
 type Log struct {
 	Time     time.Time `json:"ts"`       // Timestamp of the log entry
