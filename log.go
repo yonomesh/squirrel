@@ -1,5 +1,10 @@
 package squirrel
 
+import (
+	"runtime"
+	"strconv"
+)
+
 // Log represents the log data format.
 type LogEntry struct {
 	Time     string   `json:"ts"`       // Timestamp of the log entry
@@ -18,5 +23,54 @@ type Extra interface {
 	ExtraToString() (string, error)
 }
 
-type Logger struct {
+func GetCallFullPosition(pc uintptr, call_depth int) string {
+	var file string
+	var line int
+	if pc == 0 {
+		var ok bool
+		_, file, line, ok = runtime.Caller(call_depth)
+		if !ok {
+			file = "???"
+			line = 0
+		}
+	} else {
+		fs := runtime.CallersFrames([]uintptr{pc})
+		f, _ := fs.Next()
+		file = f.File
+		if file == "" {
+			file = "???"
+		}
+		line = f.Line
+	}
+	return file + ":" + strconv.Itoa(line)
+}
+
+func GetCallShortPosition(pc uintptr, call_depth int) string {
+	var file string
+	var line int
+	if pc == 0 {
+		var ok bool
+		_, file, line, ok = runtime.Caller(call_depth)
+		if !ok {
+			file = "???"
+			line = 0
+		}
+	} else {
+		fs := runtime.CallersFrames([]uintptr{pc})
+		f, _ := fs.Next()
+		file = f.File
+		if file == "" {
+			file = "???"
+		}
+		line = f.Line
+	}
+	short := file
+	for i := len(file) - 1; i > 0; i-- {
+		if file[i] == '/' {
+			short = file[i+1:]
+			break
+		}
+	}
+	file = short
+	return file + ":" + strconv.Itoa(line)
 }
