@@ -9,13 +9,14 @@ type LogLevel = uint8
 
 // Log Level
 const (
-	Trace   LogLevel = 0
-	Debug   LogLevel = 1
-	Info    LogLevel = 2
-	Warning LogLevel = 3
-	Error   LogLevel = 4
-	Fatal   LogLevel = 5
-	Panic   LogLevel = 6
+	Trace   LogLevel = 1 << iota // 1   0000001
+	Debug                        // 2   0000010
+	Info                         // 4   0000100
+	Warning                      // 8   0001000
+	Error                        // 16  0010000
+	Fatal                        // 32  0100000
+	Panic                        // 64  1000000
+
 )
 
 func LevelToString(level LogLevel) string {
